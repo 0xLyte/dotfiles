@@ -1,0 +1,16 @@
+# MacOS-only configs we want to ignore on other platforms.
+{{ if ne .chezmoi.os "darwin" }}
+
+{{ end }}
+
+# Linux-only configs we want to ignore on other platforms.
+{{ if ne .chezmoi.os "linux" }}
+kitty/
+rofi/
+swaylock/
+waybar/
+wlogout/
+hypr/
+xkb/
+wallpapers/
+{{ end }}

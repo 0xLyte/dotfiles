@@ -1,0 +1,66 @@
+@import "../waybar/theme.css";
+
+* {
+    background-image: none;
+    font-size: 11px;
+}
+
+window {
+	background: url("../wallpapers/blurred_bg1.jpg");
+	background-size: cover;
+}
+
+button {
+    color: @text;
+    font-weight: bold;
+    min-width: 100px;
+    min-height: 100px;
+    background-color: @base;
+    opacity: 0.4;
+    outline-style: none;
+    border: none;
+    border-width: 0px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    border-radius: 0px;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+button:focus {
+    opacity: 1;
+    color: @text;
+    background-size: 30%;
+}
+
+button:hover {
+    opacity: 1;
+    background-color: #D27C59;
+    background-size: 40%;
+    border-radius: 10px;
+}
+
+#lock {
+    background-image: image(url("icons/lock_white.png"));
+    border-radius: 23px 0px 0px 0px;
+    margin : 22px 0px 0px 22px;
+}
+
+#logout {
+    background-image: image(url("icons/logout_white.png"));
+    border-radius: 0px 0px 0px 23px;
+    margin : 0px 0px 22px 22px;
+}
+
+#shutdown {
+    background-image: image(url("icons/shutdown_white.png"));
+    border-radius: 0px 23px 0px 0px;
+    margin : 22px 22px 0px 0px;
+}
+
+#reboot {
+    background-image: image(url("icons/reboot_white.png"));
+    border-radius: 0px 0px 23px 0px;
+    margin : 0px 22px 22px 0px;
+}

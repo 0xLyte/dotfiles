@@ -1,0 +1,145 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "height" : 30,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "reload_style_on_change": true,
+
+    "margin-top" : 5,
+    "margin-left": 5,
+    "margin-right": 5,
+
+    "modules-left": [
+        "custom/l_end",
+        "hyprland/workspaces",
+        "custom/r_end",
+    ],
+
+    "modules-center": [
+        "custom/l_end",
+        "hyprland/window",
+        "custom/r_end",
+    ],
+
+    "modules-right": [
+        "custom/l_end",
+        "pulseaudio",
+        "custom/padd",
+        "network",
+        "custom/padd",
+        "temperature",
+        "custom/padd",
+        "cpu",
+        "custom/padd",
+        "memory",
+        "custom/padd",
+        "clock",
+        "custom/r_end",
+        "custom/power",
+    ],
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 35,
+        "rewrite": {
+            "": "Hyprland"
+        },
+        "separate-outputs": true,
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "",
+        },
+        "sort-by-number": true,
+        "persistent-workspaces": {
+            "*": 4,
+        },
+    },
+
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+
+    "cpu": {
+        "format": " {usage}%",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": " {}%"
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", ""]
+    },
+
+    "network": {
+        "format-ethernet": " {ifname}",
+        "tooltip-format": "{ipaddr} via {gwaddr}  ",
+        "format-linked": "{ifname} (No IP)  ",
+        "format-disconnected": "⚠ Disconnected",
+        "format-alt": " {ifname}: {ipaddr}/{cidr}"
+    },
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "custom/power": {
+        "format": "",
+        "on-click": "exec wlogout -b 2 -L 810 -R 810 -T 390 -B 390 -p layer-shell",
+        "tooltip": false,
+    },
+    
+    "custom/l_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/r_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/pl_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/pr_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/padd": {
+        "format": "  ",
+        "interval" : "once",
+        "tooltip": false
+    }
+}

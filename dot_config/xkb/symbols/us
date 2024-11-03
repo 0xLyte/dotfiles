@@ -1,0 +1,37 @@
+partial alphanumeric_keys
+xkb_symbols "corne" {
+
+    include "us(basic)"
+    name[Group1]= "English (Corne)";
+
+    key <AC01> {[ a, A, aacute, Aacute ]};
+    key <AB01> {[ z, Z, acircumflex, Acircumflex ]};
+    key <AD03> {[ e, E, agrave, Agrave ]};
+    key <AD04> {[ r, R, adiaeresis, Adiaeresis ]};
+    key <AD05> {[ t, T, ae, AE ]};
+
+    key <AD01> {[ q, Q, eacute, Eacute ]};
+    key <AC02> {[ s, S, ecircumflex, Ecircumflex ]};
+    key <AC03> {[ d, D, egrave, Egrave ]};
+    key <AC04> {[ f, F, ediaeresis, Ediaeresis ]};
+    key <AC05> {[ g, G, EuroSign ]};
+
+    key <AB03> {[ c, C, ccedilla, Ccedilla ]};
+
+    key <AD07> {[ u, U, ugrave, Ugrave ]};
+    key <AC07> {[ j, J, ucircumflex, Ucircumflex ]};
+    key <AC10> {[ semicolon, colon, udiaeresis, Udiaeresis ]};
+    
+    key <AD08> {[ i, I, icircumflex, Icircumflex ]};
+    key <AC08> {[ k, K, idiaeresis, Idiaeresis ]};
+    key <AC09> {[ l, L, oe, OE ]};
+
+    key <AD09> {[ o, O, ocircumflex, Ocircumflex ]};
+
+    key <AB08> {[ comma, less, guillemotleft, leftdoublequotemark ]};
+    key <AB09> {[ dot, greater, guillemotright, rightdoublequotemark ]};
+
+    key <AE11> {[ minus, underscore, endash, emdash ]};
+
+    include "level3(ralt_switch)"
+};
