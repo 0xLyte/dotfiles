@@ -4,6 +4,7 @@
 
 # PATH env var.
 path+=($HOME/.config/hypr/bin)
+path+=($HOME/.local/bin)
 
 # Pure theme path
 fpath+=($HOME/.zsh/themes/pure)
