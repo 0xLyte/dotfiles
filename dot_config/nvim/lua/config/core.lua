@@ -12,7 +12,6 @@ local opt = vim.opt
 opt.mouse = 'a'                 -- Enables mouse supports.
 opt.showmatch = true		    -- briefly jump to the matching bracket.
 opt.wildmode = 'longest,list'	-- Bash-like command-line completion.
-opt.swapfile = false            -- No swap files.
 opt.clipboard = 'unnamedplus'   -- Use system clipboard.
 opt.lazyredraw = true           -- Speeds up scrolling.
 opt.foldmethod = 'marker'       -- Folding method for the current window.
@@ -22,6 +21,43 @@ opt.linebreak = true            -- Word breaks occur at specific characters only
 opt.shell = 'zsh'               -- Sets zsh as the default terminal emulator.
 g.diminactive_enable_focus = 1  -- Un/Dimming on FocusLost and FocusGained.
 opt.pumheight = 20              -- Reduce height of completion menus.
+
+-- -----------------------------------------------------------------------------
+-- Swap files, backups and undo
+-- -----------------------------------------------------------------------------
+
+HOME = os.getenv("HOME")
+NVIM_DIR = HOME .. "/.nvim"
+SWAP_DIR = NVIM_DIR .. "/swap"
+BACKUPS_DIR = NVIM_DIR .. "/backups"
+UNDO_DIR = NVIM_DIR .. "/undo"
+
+function create_dir (name)
+    if vim.fn.isdirectory(name) == 0 then
+        vim.fn.mkdir(name, "p", "0o700")
+    end
+end
+
+create_dir(NVIM_DIR)
+create_dir(SWAP_DIR)
+create_dir(BACKUPS_DIR)
+create_dir(UNDO_DIR)
+
+opt.directory = SWAP_DIR
+opt.backupdir = BACKUPS_DIR
+opt.undodir = UNDO_DIR
+
+opt.swapfile = true     -- Enables swap files.
+opt.backup = true       -- Enables backup files.
+opt.undofile = true     -- Enables persistent undo.
+
+-- Custom extensions for backup files.
+vim.api.nvim_create_autocmd("BufWritePre", {
+	callback = function()
+		local extension = "~" .. vim.fn.strftime("%Y-%m-%d-%H%M%S")
+		vim.o.backupext = extension
+	end,
+})
 
 -- -----------------------------------------------------------------------------
 -- Search
