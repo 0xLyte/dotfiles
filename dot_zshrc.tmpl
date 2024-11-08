@@ -3,8 +3,12 @@
 # fi
 
 # PATH env var.
+{{ if eq .chezmoi.os "darwin" }}
+path+=(/opt/homebrew/bin)
+{{ else if eq .chezmoi.os "linux" }}
 path+=($HOME/.config/hypr/bin)
 path+=($HOME/.local/bin)
+{{ end }}
 
 # export LIBRARY_PATH=/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH
 
