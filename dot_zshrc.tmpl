@@ -9,6 +9,7 @@ fpath+=("$(brew --prefix)/share/zsh/site-functions")
 {{ else if eq .chezmoi.os "linux" }}
 path+=($HOME/.config/hypr/bin)
 path+=($HOME/.local/bin)
+path+=($HOME/.codeql/codeql)
 {{ end }}
 
 # export LIBRARY_PATH=/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH
