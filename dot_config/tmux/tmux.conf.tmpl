@@ -1,0 +1,116 @@
+# =============================================================================
+# General Options
+# =============================================================================
+
+# Remapping the prefix to alt-a
+unbind C-b
+set-option -g prefix M-a
+bind-key M-a send-prefix
+
+set -s escape-time 0
+
+# Configuration reload
+unbind r
+bind r source-file ~/.config/tmux/tmux.conf \; display "Configuration reloaded."
+
+# Annoying default bindings.
+unbind Space
+
+# Colors
+set-option -g default-terminal "screen-256color"
+set-option -sa terminal-overrides ",xterm*:Tc"
+
+# Dimming background of inactive panes.
+set-option -g focus-events on
+# set-hook -g client-focus-in "set window-active-style 'fg=terminal,bg=terminal'"
+# set-hook -g client-focus-out "set window-active-style 'fg=terminal,bg=\"#13111B\"'"
+# set -g window-active-style fg=terminal,bg=terminal
+# set -g window-style fg=terminal,bg="#13111B"
+
+set -g mouse on
+
+# Changing window and pane numbering
+set -g base-index 1
+set -g pane-base-index 1
+set-window-option -g pane-base-index 1
+set-option -g renumber-windows on
+
+# =============================================================================
+# Bindings
+# =============================================================================
+
+# vi mode
+set-window-option -g mode-keys vi
+
+# Selection
+bind a copy-mode
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+
+# Open panes in current directory.
+bind - split-window -v -c "#{pane_current_path}"
+bind | split-window -h -c "#{pane_current_path}"
+
+bind right next-window
+bind left previous-window
+
+# Layouts
+bind M-q select-layout even-horizontal
+bind M-s select-layout even-vertical
+bind M-d select-layout main-horizontal
+bind M-f select-layout main-vertical
+bind M-g select-layout tiled
+ 
+# Resizing
+bind -r j resize-pane -D 5
+bind -r k resize-pane -U 5
+bind -r h resize-pane -L 5
+bind -r l resize-pane -R 5
+bind -r m resize-pane -Z
+
+# =============================================================================
+# Plugins
+# =============================================================================
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'christoomey/vim-tmux-navigator'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'catppuccin/tmux#v2.1.0'
+set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @plugin 'xamut/tmux-weather'
+
+# Session management.
+set -g @resurrect-capture-pane-contents 'on'
+set -g @continuum-restore 'on'
+
+# Theme.
+set -g @catppuccin_flavor 'mocha'
+set -g @catppuccin_window_status_style "rounded"
+set-option -g @tmux-weather-location "Montpellier"
+
+# Load catppuccin
+{{ if eq .chezmoi.os "darwin" }}
+run ~/.config/tmux/plugins/tmux/catppuccin.tmux
+{{ else if eq .chezmoi.os "linux" }}
+run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
+{{ end }}
+
+# Make the status line pretty and add some modules
+set -g status-right-length 100
+set -g status-left-length 100
+set -g status-left ""
+set -g status-right "#{E:@catppuccin_status_application}"
+# set -agF status-right "#{E:@catppuccin_status_cpu}"
+set -ag status-right "#{E:@catppuccin_status_session}"
+set -ag status-right "#{E:@catppuccin_status_uptime}"
+set -agF status-right "#{E:@catppuccin_status_weather}"
+
+{{ if eq .chezmoi.os "darwin" }}
+run '$HOMEBREW_PREFIX/opt/tpm/share/tpm/tpm'
+{{ else if eq .chezmoi.os "linux" }}
+run '/usr/share/tmux-plugin-manager/tpm'
+{{ end }}
