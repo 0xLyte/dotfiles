@@ -8,6 +8,7 @@ return {
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         "nvim-tree/nvim-web-devicons",
         "folke/todo-comments.nvim",
+        "nvim-telescope/telescope-smart-history.nvim",
     },
     config = function()
         local telescope = require("telescope")
@@ -32,12 +33,19 @@ return {
                         ["<C-j>"] = actions.move_selection_next,
                         ["<C-q>"] = actions.send_selected_to_qflist + custom_actions.open_trouble_qflist,
                         ["<C-t>"] = trouble_telescope.open,
+                        ["<C-Up>"] = actions.cycle_history_prev,
+                        ["<C-Down>"] = actions.cycle_history_next,
                     },
                 },
+                history = {
+                    path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+                    limit = 100,
+                }
             },
         })
 
         telescope.load_extension("fzf")
+        telescope.load_extension('smart_history')
 
         local keymap = vim.keymap
 
@@ -47,5 +55,6 @@ return {
         keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
         keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
         keymap.set("n", "<leader>fm", "<cmd>Telescope resume<cr>", { desc = "Resume the latest search" })
+        keymap.set("n", "<leader>fb", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", { desc = "File browser in the current buffer directory" })
     end,
 }

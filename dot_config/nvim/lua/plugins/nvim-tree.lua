@@ -16,12 +16,27 @@ return {
                 return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
             end
 
+            -- live grep using Telescope inside the current directory under
+            -- the cursor (or the parent directory of the current file)
+            local function grep_in()
+                local node = api.tree.get_node_under_cursor()
+                local path = node.absolute_path or vim.uv.cwd()
+                if node.type ~= 'directory' and node.parent then
+                    path = node.parent.absolute_path
+                end
+                require('telescope.builtin').live_grep({
+                    search_dirs = { path },
+                    prompt_title = string.format('Grep in [%s]', vim.fs.basename(path)),
+                })
+            end
+
             -- default mappings
             api.config.mappings.default_on_attach(bufnr)
 
             -- custom mappings
             vim.keymap.set('n', '<C-b>', api.tree.change_root_to_parent,        opts('Up'))
             vim.keymap.set('n', '<C-f>', api.tree.change_root_to_node,        opts('CD'))
+            vim.keymap.set('n', '<C-g>', grep_in)
         end
 
         nvimtree.setup({
@@ -68,5 +83,6 @@ return {
         keymap.set("n", "<leader>ef", "<cmd>NvimTreeFocus<CR>", { desc = "Focus file explorer" })
         keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
         keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
+
     end
 }
