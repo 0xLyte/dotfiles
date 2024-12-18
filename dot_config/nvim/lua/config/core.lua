@@ -85,3 +85,64 @@ opt.smartindent = true  -- Smart auto-indentation on new lines.
 
 opt.number = true
 opt.relativenumber = true
+
+-- -----------------------------------------------------------------------------
+-- Language specific
+-- -----------------------------------------------------------------------------
+
+vim.api.nvim_create_augroup("AutoFormat", {})
+
+-- Python ----------------------------------------------------------------------
+
+-- Automatically format on save.
+vim.api.nvim_create_autocmd(
+    "BufWritePost",
+    {
+        pattern = "*.py",
+        group = "AutoFormat",
+        callback = function()
+            vim.cmd("silent !black --quiet %")
+            vim.cmd("edit")
+        end,
+    }
+)
+
+-- 80-character column.
+vim.api.nvim_create_autocmd(
+    "BufEnter",
+    {
+        pattern = "*.py",
+        callback = function()
+            vim.opt.colorcolumn = "79"
+            vim.cmd("")
+        end,
+    }
+)
+
+
+-- Rust ----------------------------------------------------------------------
+
+-- Automatically format on save.
+vim.api.nvim_create_autocmd(
+    "BufWritePost",
+    {
+        pattern = "*.rs",
+        group = "AutoFormat",
+        callback = function()
+            vim.cmd("silent !rustfmt %")
+            vim.cmd("edit")
+        end,
+    }
+)
+
+-- 100-character column.
+vim.api.nvim_create_autocmd(
+    "BufEnter",
+    {
+        pattern = "*.rs",
+        callback = function()
+            vim.opt.colorcolumn = "100"
+            vim.cmd("")
+        end,
+    }
+)

@@ -4,6 +4,7 @@
 
 # PATH env var.
 {{ if eq .chezmoi.os "darwin" }}
+path+=(/opt/homebrew/opt/sphinx-doc/bin)
 path+=(/opt/homebrew/bin)
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 {{ else if eq .chezmoi.os "linux" }}
