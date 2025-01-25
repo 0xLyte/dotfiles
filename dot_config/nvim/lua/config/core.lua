@@ -101,7 +101,7 @@ vim.api.nvim_create_autocmd(
         pattern = "*.py",
         group = "AutoFormat",
         callback = function()
-            vim.cmd("silent !black --quiet %")
+            vim.cmd("silent !black --line-length 79 --quiet %")
             vim.cmd("edit")
         end,
     }
@@ -113,7 +113,7 @@ vim.api.nvim_create_autocmd(
     {
         pattern = "*.py",
         callback = function()
-            vim.opt.colorcolumn = "79"
+            vim.opt.colorcolumn = "80"
             vim.cmd("")
         end,
     }
