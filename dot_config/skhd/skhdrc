@@ -1,0 +1,8 @@
+lalt - h: aerospace focus left --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors
+lalt - j: aerospace focus down --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors
+lalt - k: aerospace focus up --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors
+lalt - l: aerospace focus right --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors
+shift + lalt - h: aerospace move left
+shift + lalt - j: aerospace move down
+shift + lalt - k: aerospace move up
+shift + lalt - l: aerospace move right
