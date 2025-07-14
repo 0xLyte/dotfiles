@@ -27,9 +27,13 @@ keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
-vim.keymap.set('n', '<leader>xt', function()
-  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { silent = true, noremap = true })
+-- diagnostic.
+keymap.set("n", "<leader>xt", "<cmd>DiagnosticsToggle<CR>", { desc = "Toggle diagnostics." })
+keymap.set("n", "<leader>xvt", "<cmd>DiagnosticsToggleVirtualText<CR>", { desc = "Toggle inline diagnostics." })
+
+-- vim.keymap.set('n', '<leader>xt', function()
+--   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+-- end, { silent = true, noremap = true })
 
 -- Convenient AZERTY bindings (Linux).
 -- keymap.set({"n", "x"}, "&", "1")
