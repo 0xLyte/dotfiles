@@ -2,15 +2,33 @@
 #     exec tmux new-session -A -s ${USER} >/dev/null 2>&1
 # fi
 
+# History env var.
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt SHARE_HISTORY
+
 # PATH env var.
 {{ if eq .chezmoi.os "darwin" }}
 path+=(/opt/homebrew/opt/sphinx-doc/bin)
+path+=(/opt/homebrew/opt/binutils/bin)
 path+=(/opt/homebrew/bin)
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 {{ else if eq .chezmoi.os "linux" }}
 path+=($HOME/.config/hypr/bin)
 path+=($HOME/.local/bin)
 path+=($HOME/.codeql/codeql)
+{{ end }}
+
+{{ if eq .chezmoi.os "darwin" }}
+export IDADIR="/Applications/IDA Professional 9.2.app/Contents/MacOS/"
 {{ end }}
 
 # export LIBRARY_PATH=/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH
@@ -166,5 +184,8 @@ alias lt='eza --tree --level=2'                                        # tree
 # Darwin-specific aliases
 alias nproc="sysctl -n hw.physicalcpu"
 {{ end }}
+
+# Getting rid of that one obnoxious keybind.
+bindkey -r "^[l"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

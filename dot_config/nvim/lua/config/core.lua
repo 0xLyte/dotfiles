@@ -47,7 +47,7 @@ opt.directory = SWAP_DIR
 opt.backupdir = BACKUPS_DIR
 opt.undodir = UNDO_DIR
 
-opt.swapfile = true     -- Enables swap files.
+opt.swapfile = false    -- Disables swap files.
 opt.backup = true       -- Enables backup files.
 opt.undofile = true     -- Enables persistent undo.
 
