@@ -110,10 +110,10 @@ alt-comma = 'layout accordion horizontal vertical'
 alt-equal = 'balance-sizes'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-# alt-h = 'focus left --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-# alt-j = 'focus down --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-# alt-k = 'focus up --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-# alt-l = 'focus right --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+alt-h = 'focus left --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+alt-j = 'focus down --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+alt-k = 'focus up --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+alt-l = 'focus right --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
 
 alt-ctrl-h = 'move-node-to-monitor left --wrap-around --focus-follows-window'
 alt-ctrl-j = 'move-node-to-monitor down --wrap-around --focus-follows-window'
@@ -143,6 +143,7 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
+alt-0 = 'workspace 10'
 # alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
 alt-b = 'workspace B'
 # alt-c = 'workspace C'
@@ -219,37 +220,37 @@ end tell'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
 
-[[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace B'
-
-[[on-window-detected]]
-if.app-id = 'org.mozilla.firefox'
-run = 'move-node-to-workspace B'
-
-[[on-window-detected]]
-if.app-id = 'com.vmware.fusion'
-run = 'move-node-to-workspace V'
-
-[[on-window-detected]]
-if.app-id = 'md.obsidian'
-run = 'move-node-to-workspace N'
-
-[[on-window-detected]]
-if.app-id = 'org.whispersystems.signal-desktop'
-run = 'move-node-to-workspace Y'
-
-[[on-window-detected]]
-if.app-id = 'im.riot.app'
-run = 'move-node-to-workspace Y'
-
-[[on-window-detected]]
-if.app-id = 'com.apple.mail'
-run = 'move-node-to-workspace Y'
-
-[[on-window-detected]]
-if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace 9'
+# [[on-window-detected]]
+# if.app-id = 'com.google.Chrome'
+# run = 'move-node-to-workspace B'
+#
+# [[on-window-detected]]
+# if.app-id = 'org.mozilla.firefox'
+# run = 'move-node-to-workspace B'
+#
+# [[on-window-detected]]
+# if.app-id = 'com.vmware.fusion'
+# run = 'move-node-to-workspace V'
+#
+# [[on-window-detected]]
+# if.app-id = 'md.obsidian'
+# run = 'move-node-to-workspace N'
+#
+# [[on-window-detected]]
+# if.app-id = 'org.whispersystems.signal-desktop'
+# run = 'move-node-to-workspace Y'
+#
+# [[on-window-detected]]
+# if.app-id = 'im.riot.app'
+# run = 'move-node-to-workspace Y'
+#
+# [[on-window-detected]]
+# if.app-id = 'com.apple.mail'
+# run = 'move-node-to-workspace Y'
+#
+# [[on-window-detected]]
+# if.app-id = 'com.spotify.client'
+# run = 'move-node-to-workspace 9'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

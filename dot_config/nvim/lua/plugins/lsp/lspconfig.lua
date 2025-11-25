@@ -71,24 +71,8 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
-        vim.lsp.config.lua_ls = {
-            capabilities = function()
-                -- configure lua server (with special settings)
-                lspconfig["lua_ls"].setup({
-                    capabilities = capabilities,
-                    settings = {
-                        Lua = {
-                            -- make the language server recognize "vim" global
-                            diagnostics = {
-                                globals = { "vim" },
-                            },
-                            completion = {
-                                callSnippet = "Replace",
-                            },
-                        },
-                    },
-                })
-            end,
-        }
+        vim.lsp.config("*", {
+            capabilities=capabilities,
+        })
     end,
 }

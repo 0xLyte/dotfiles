@@ -4,8 +4,8 @@ return {
     "feline-nvim/feline.nvim",
     after = "catppuccin",
     config = function()
-        local ctp_feline = require('catppuccin.groups.integrations.feline')
-        local components = ctp_feline.get()
+        local ctp_feline = require('catppuccin.special.feline')
+        local components = ctp_feline.get_statusline()
         components.active[3][3].provider = function()
             local filename = vim.fn.expand "%:."
             local extension = vim.fn.expand "%:e"

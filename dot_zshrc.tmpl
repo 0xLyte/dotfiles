@@ -20,6 +20,7 @@ setopt SHARE_HISTORY
 path+=(/opt/homebrew/opt/sphinx-doc/bin)
 path+=(/opt/homebrew/opt/binutils/bin)
 path+=(/opt/homebrew/bin)
+path+=($HOME/.local/bin)
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 {{ else if eq .chezmoi.os "linux" }}
 path+=($HOME/.config/hypr/bin)
@@ -187,5 +188,8 @@ alias nproc="sysctl -n hw.physicalcpu"
 
 # Getting rid of that one obnoxious keybind.
 bindkey -r "^[l"
+
+# Disable sequence wait time for weechat
+set -sg escape-time 0
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

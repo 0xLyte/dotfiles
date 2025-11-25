@@ -25,7 +25,7 @@ return {
                 "pyright",
                 "clangd",
                 "neocmake",
-                "codeqlls",
+                -- "codeqlls",
                 -- "gopls",
                 "html",
                 "htmx",
