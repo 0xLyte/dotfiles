@@ -152,7 +152,7 @@ vim.api.nvim_create_autocmd(
 )
 
 
--- Rust ----------------------------------------------------------------------
+-- Rust ------------------------------------------------------------------------
 
 -- Automatically format on save.
 vim.api.nvim_create_autocmd(
@@ -174,6 +174,40 @@ vim.api.nvim_create_autocmd(
         pattern = "*.rs",
         callback = function()
             vim.opt.colorcolumn = "100"
+            vim.cmd("")
+        end,
+    }
+)
+
+-- C, C++ ----------------------------------------------------------------------
+
+-- Automatically format C++ files on save.
+-- TODO:
+
+-- Automatically format C files on save.
+vim.api.nvim_create_autocmd(
+    "BufWritePost",
+    {
+        pattern = "*.c",
+        group = "AutoFormat",
+        callback = function()
+            vim.cmd("silent !clang-format"
+                .. " --fallback-style Webkit"
+                .. " --style file:"
+                .. vim.fn.stdpath("config") .. "/external/.clang-format"
+                .. " -i %")
+            vim.cmd("edit")
+        end,
+    }
+)
+
+-- 80-character column for C and C++ files.
+vim.api.nvim_create_autocmd(
+    "BufEnter",
+    {
+        pattern = "*.c,*.cpp",
+        callback = function()
+            vim.opt.colorcolumn = "80"
             vim.cmd("")
         end,
     }
